@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "webpack-dev-server --open --mode development",
-    "start-prod": "node app.js",
+    "start-prod": "node dist/app.js",
     "test": "jest",
     "test:e2e": "playwright test e2e-tests/test.spec.js",
     "lint": "eslint \"./**/*.{js,jsx}\"",
