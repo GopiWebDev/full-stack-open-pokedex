@@ -2,6 +2,6 @@
 
 echo "Build script"
 
-npm ci --production
-npm install express --save
+npm install
 npm run build
+cp app.js dist/
