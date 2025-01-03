@@ -4,5 +4,6 @@ echo "Build script"
 
 npm install
 npm run build
+ls -la
 cp app.js dist/
-cd dist
+ls -la dist/
