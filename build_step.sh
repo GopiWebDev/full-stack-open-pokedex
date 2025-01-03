@@ -2,6 +2,6 @@
 
 echo "Build script"
 
-npm ci
-npm install express
+npm ci --production
+npm install express --save
 npm run build
