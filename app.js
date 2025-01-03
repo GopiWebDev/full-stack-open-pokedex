@@ -11,9 +11,7 @@ app.get('/version', (req, res) => {
 });
 
 app.get('/health', (req, res) => {
-  // eslint-disable-next-line no-constant-condition
-  if (true) throw 'error...  ';
-  res.send('app is running after new push');
+  res.send('this is working version');
 });
 
 app.listen(PORT, () => {
