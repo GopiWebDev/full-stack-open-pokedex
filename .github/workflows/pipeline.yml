@@ -38,7 +38,7 @@ jobs:
       contents: write
     if: ${{ !contains(github.event.head_commit.message, '#skip') }}
     steps:
-      - uses: actions/checkout@f278d49d30cdd8775cc3e7dd00b5ee11686ee297
+      - uses: actions/checkout@8c8163ef62cf9c4677c8e800f36270af27930f42
       - name: Bump version and push tag
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         uses: anothrNick/github-tag-action@1.64.0
