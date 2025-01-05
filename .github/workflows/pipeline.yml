@@ -49,8 +49,12 @@ jobs:
   discord_notification:
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-20.04
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@v4
+      - name: Debug Secrets
+        run: echo "DISCORD_WEBHOOK is set"
+        if: ${{ secrets.DISCORD_WEBHOOK != '' }}
 
       - name: Test Success
         uses: rjstone/discord-webhook-notify@v1
