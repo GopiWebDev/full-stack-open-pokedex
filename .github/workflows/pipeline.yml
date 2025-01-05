@@ -31,14 +31,6 @@ jobs:
         run: |
           curl "$deploy_url"
 
-      - name: Test Success
-        uses: EDUJOS/ds-webhook@v1.0.0
-        if: success()
-        with:
-          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
-          title: Test Succeeded!
-          description: Test Description
-
   tag_release:
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-20.04
@@ -53,3 +45,23 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
+
+  discord_notify:
+    needs: [simple_deployment_pipeline]
+    runs-on: ubuntu-20.04
+    permissions:
+      contents: read
+    steps:
+      - name: Notify Discord
+        if: success()
+        uses: discord-actions/message@v2
+        with:
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          message: 'a new version of Pokedex deployed'
+
+      - name: Notify Discord
+        if: failure()
+        uses: discord-actions/message@v2
+        with:
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          message: 'Build Failed'
