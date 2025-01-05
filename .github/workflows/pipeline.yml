@@ -52,18 +52,16 @@ jobs:
     permissions:
       contents: read
     steps:
-      - name: Test Success
-        uses: rjstone/discord-webhook-notify@v1
+      - name: Notify Discord
         if: success()
+        uses: discord-actions/message@v2
         with:
-          severity: info
-          details: Test Succeeded!
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          message: 'a new version of Pokedex deployed'
 
-      - name: Test Failure
-        uses: rjstone/discord-webhook-notify@v1
+      - name: Notify Discord
         if: failure()
+        uses: discord-actions/message@v2
         with:
-          severity: error
-          details: Test Failed!
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          message: 'Build Failed'
