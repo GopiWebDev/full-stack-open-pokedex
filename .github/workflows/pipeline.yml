@@ -52,10 +52,6 @@ jobs:
     permissions:
       contents: read
     steps:
-      - name: Debug Secrets
-        run: echo "DISCORD_WEBHOOK is set"
-        if: ${{ secrets.DISCORD_WEBHOOK != '' }}
-
       - name: Test Success
         uses: rjstone/discord-webhook-notify@v1
         if: success()
